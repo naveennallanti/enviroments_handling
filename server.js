@@ -1,12 +1,14 @@
 const express = require('express')
-const app = express()
 const dotenv = require('dotenv');
-dotenv.config();
-const port = process.env.port;
-var common_functions = require('./commonFunctions')
 const fs = require('fs');
-app.use(express.json())
+dotenv.config();
+const common_functions = require('./commonFunctions');
+const port = process.env.port;
+const cors=require('cors');
 
+const app = express()
+app.use(express.json())
+app.use(cors());
 
 app.get('/getEnvironment/:process', (req, res) => {
     let process = req.params.process;
